@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>library</title>
+</head>
+<body>
+    <h1>책방입니다.</h1>
+    {% for book in books %}
+            <h2>제목: {{ book.title }}</h2>
+            <h2>내용: {{ book.content }}</h2>
+            <h2>저자: {{ book.author }}</h2>
+            <hr>
+    {% endfor %}
+</body>
+</html>
