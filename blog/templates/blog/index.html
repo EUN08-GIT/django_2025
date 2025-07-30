@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>블로그</title>
+</head>
+<body>
+    <h1>
+        블로그 전체글 리스트입니다.
+        {% for post in posts %}
+            <h2>제목: {{ post.title }}</h2>
+            <h2>내용: {{ post.content }}</h2>
+            <h2>생성일: {{ post.created_date }}</h2>
+            <hr>
+        {% endfor %}
+    </h1>
+</body>
+</html>
