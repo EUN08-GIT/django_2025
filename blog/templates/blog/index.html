@@ -86,7 +86,14 @@
                     {% for post in posts %}
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src={{ post.uploaded_img.url }} alt="..." /></a>
+                        {% if post.uploaded_img %}
+                        <a href="#!">
+
+                            <img class="card-img-top" src={{ post.uploaded_img.url }} alt="..." />
+                        </a>
+                            {% else %}
+                            <img class="card-img-top" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." />
+                            {% endif %}
                         <div class="card-body">
                             <div class="small text-muted">{{post.created_date}}</div>
                             <h2 class="card-title">{{ post.title }}</h2>
