@@ -5,7 +5,7 @@ from .forms import PostForm
 
 
 def index(request):
-    posts=Post.objects.all()
+    posts=Post.objects.all().order_by('-pk')
     return render(request,
                   'blog/index.html',
                   context={'posts':posts}
@@ -17,7 +17,7 @@ def detail(request, pk):
                   context={'post2':post})
 def create(request):
     if request.method =="POST":
-        postform=PostForm(request.POST)
+        postform=PostForm(request.POST,request.FILES)
         if postform.is_valid():
             post1=postform.save(commit=False)
             post1.title+='!!'

@@ -86,6 +86,10 @@
                         <header class="mb-4">
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ post2.title }}</h1>
+                            <button><a href={{ post2.uploaded_file.url }} download>다운로드</a></button>
+                            <div  style="text-align: right">
+                                <a>첨부파일: {{post2.uploaded_file.name}}</a>
+                            </div>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">{{ post2.created_date }}</div>
                             <!-- Post categories-->
