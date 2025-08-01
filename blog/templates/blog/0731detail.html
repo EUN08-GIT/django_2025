@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>상세책 내용</title>
+    <title>상세글 페이지</title>
     <!-- 부트스트랩-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
         <!-- 부트스트랩-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-     <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MyBlog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,19 +18,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/blog/">Blog</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/library/">Library</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/aboutme/">햄버거</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/shopping/">shopping</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,30 +85,30 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">{{ book2.title }}</h1>
-                            {% if book2.uploaded_file %}
-                            <button><a href={{ book2.uploaded_file.url }} download>다운로드</a></button>
+                            <h1 class="fw-bolder mb-1">{{ post2.title }}</h1>
+                            {% if post2.uploaded_file %}
+                            <button><a href={{ post2.uploaded_file.url }} download>다운로드</a></button>
                             <div  style="text-align: right">
-                                <a>첨부파일: {{book2.uploaded_file.name}}</a>
+                                <a>첨부파일: {{post2.uploaded_file.name}}</a>
                             </div>
                             {% endif %}
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">{{ book2.author }}</div>
+                            <div class="text-muted fst-italic mb-2">{{ post2.created_date }}</div>
                             <!-- Post categories-->
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
 
                         <figure class="mb-4">
-                            {% if book2.uploaded_img %}
-                            <img class="img-fluid rounded" src={{ book2.uploaded_img.url }} alt="..." />
+                            {% if post2.uploaded_img %}
+                            <img class="img-fluid rounded" src={{ post2.uploaded_img.url }} alt="..." />
                         </figure>
                             {% else %}
                             <img class="img-fluid rounded" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                             {% endif %}
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p class="fs-5 mb-4">{{ book2.content }}</p>
+                            <p class="fs-5 mb-4">{{ post2.content }}</p>
                             <p class="fs-5 mb-4"></p>
                             <p class="fs-5 mb-4"></p>
                             <h2 class="fw-bolder mb-4 mt-5"></h2>
@@ -163,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary" href='/library/'>목록으로 이동 →</a>
+                        <a class="btn btn-primary" href='/blog/'>목록으로 이동 →</a>
                     </section>
                 </div>
 
