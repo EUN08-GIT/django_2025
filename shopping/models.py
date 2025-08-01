@@ -8,7 +8,7 @@ from django.db import models
 class Shop(models.Model):
         title = models.CharField(max_length=30)
         content = models.TextField()
-        price = models.IntegerField(max_length=10)
+        price = models.IntegerField()
         seller = models.CharField(max_length=10)
 
         def __str__(self):

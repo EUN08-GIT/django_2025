@@ -6,12 +6,45 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="col-lg-10" >
+        <h6>작성자 : {{ postform.author }}</h6>
         <h6>제목 : {{ postform.title }}</h6>
         <h6>내용 : {{ postform.content }}</h6>
+        <h6>분류 : {{ postform.category }}</h6>
         <h6>사진 : {{ postform.uploaded_img }}</h6>
         <h6>파일 : {{ postform.uploaded_file }}</h6>
         <h3><input type="submit"></h3>
     </div>
     <a href="#">뒤로가기</a>
 </form>
+{% endblock %}
+
+{% block sidebar %}
+<div class="col-lg-4">
+                    <!-- Search widget-->
+
+                    <div class="card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                                    <ul class="list-unstyled mb-0">
+                                        {% for category in categories %}
+                                              <li><a href="/blog/category/{{ category.slug }}">{{ category.name }}</a></li>
+                                        {% endfor %}
+                                              <li><a href="/blog/category/no_category">미분류</a> </li>
+                                    </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
 {% endblock %}

@@ -5,6 +5,7 @@ urlpatterns = [
     path('',views.index),
     path('<int:pk>/', views.detail),
     path('create/', views.create),
-    path('createfake/', views.createfake)
+    path('createfake/', views.createfake),
+    path('category/<slug>/', views.category)
 
 ]

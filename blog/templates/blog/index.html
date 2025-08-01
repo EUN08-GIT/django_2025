@@ -14,7 +14,13 @@
     <div class="card-body">
         <div class="small text-muted">{{post.created_date}}</div>
         <h2 class="card-title">{{ post.title }}</h2>
+        <p class="card-text">작성자 : [{{ post.author }}]</p>
         <p class="card-text">{{ post.content }}</p>
+        {% if post.category %}
+            <a class="badge bg-secondary text-decoration-none link-light" href="#!">⭐{{ post.category.name}}⭐</a>
+        {% else %}
+            <a class="badge bg-secondary text-decoration-none link-light" href="#!">카테고리 미설정</a>
+        {% endif %}
         <a class="btn btn-primary" href={{ post.get_absolute_url }}>Read more →</a>
     </div>
 </div>
@@ -37,7 +43,7 @@
 {% block sidebar %}
 <div class="col-lg-4">
                     <!-- Search widget-->
-                    <a class="btn btn-primary" href='create/'>글쓰기 →</a>
+                    <a class="btn btn-primary" href='/blog/create/'>글쓰기 →</a>
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
@@ -51,19 +57,14 @@
                     <div class="card mb-4">
                         <div class="card-header">Categories</div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
+                                        {% for category in categories %}
+                                            <li><a href={{ category.get_url }}>{{ category.name }}</a></li>
+                                        {% endfor %}
+                                            <li><a href="/blog/category/no_category">미분류</a> </li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
+
                                     </ul>
                                 </div>
                             </div>
