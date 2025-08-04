@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "single_pages",
     'blog',
     'library',
-    'shopping'
+    'shopping',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

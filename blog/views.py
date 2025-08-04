@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Post, Category
-from .forms import PostForm
+from .models import Post, Category,Comment
+from .forms import PostForm, CommentForm
 # Create your views here
 
 
@@ -28,10 +28,15 @@ def category(request, slug):
 def detail(request, pk):
     post=Post.objects.get(pk=pk)
     categories=Category.objects.all()
+    commentform=CommentForm()
+    comment=Comment.objects.filter(post=post)
+
     return render(request,
                   'blog/detail.html',
                   context={'post2':post,
-                           'categories':categories},
+                           'categories':categories,
+                           'comment':comment,
+                          'commentform':commentform},
                   )
 def create(request):
     categories=Category.objects.all()
@@ -55,3 +60,61 @@ def createfake(request):
     post.content='나진상가'
     post.save()
     return redirect('/blog/')
+
+def delete(request, pk):
+    post=Post.objects.get(pk=pk)
+    post.delete()
+    return redirect('/blog/')
+
+def update(request, pk):
+    post=Post.objects.get(pk=pk)
+    if request.method =="POST":
+        postfrom=PostForm(request.POST,request.FILES,instance=post)
+        if postfrom.is_valid():
+            postfrom.save()
+            return redirect('/blog/')
+    else:
+        postform=PostForm(instance=post)
+
+    return render(request,
+                  template_name='blog/postupdate.form.html',
+                  context={'postform':postform,})
+
+
+def createComment(request, pk):
+    post = Post.objects.get(pk=pk)
+    if request.method == "POST":
+        commentform = CommentForm(request.POST, request.FILES)
+        if commentform.is_valid():
+            comment1 = commentform.save(commit=False)
+            comment1.post = post
+            comment1.save()
+            return redirect(f'/blog/{post.pk}/')
+    else:
+        commentform = CommentForm()
+
+    return render(request, template_name='blog/commentform.html', context={'commentform': commentform})
+
+def updateComment(request, pk):
+    comment=Comment.objects.get(pk=pk)
+    post = comment.post
+    if request.method =="POST":
+        commentform=CommentForm(request.POST,instance=comment)
+        if commentform.is_valid():
+            commentform.save()
+            return redirect(f'/blog/{post.pk}/')
+    else:
+        commentform=CommentForm(instance=comment)
+
+    return render(request,
+                  template_name='blog/updatecomment.html',
+                  context={'commentform':commentform}
+                  )
+
+def deleteComment(request, pk):
+    comment=Comment.objects.get(pk=pk)
+    #post=comment.post
+    comment.delete()
+    return redirect(f'/blog/{comment.post.pk}/')
+
+

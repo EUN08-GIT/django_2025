@@ -1,0 +1,5 @@
+ <form method="POST" enctype="multipart/form-data" action="{% url 'createComment' post2.pk %}">
+        {% csrf_token %}
+        {{ commentform }}
+        <input type="submit" value="댓글입력">
+    </form>

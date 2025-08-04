@@ -13,6 +13,8 @@
                 <a>첨부파일: {{post2.uploaded_file.name}}</a>
             </div>
             {% endif %}
+            <a class="btn btn-primary" href="/blog/{{ post2.pk }}/delete">글 삭제</a>
+            <a class="btn btn-danger" href="/blog/{{ post2.pk }}/update">글 수정</a>
             <!-- Post meta content-->
             <div class="text-muted fst-italic mb-2">{{ post2.created_date }}</div>
             <div class="text-muted fst-italic mb-2">작성자 : [{{ post2.author }}]</div>
@@ -31,6 +33,7 @@
             {% else %}
             <img class="img-fluid rounded" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
             {% endif %}
+
         <!-- Post content-->
         <section class="mb-5">
             <p class="fs-5 mb-4">{{ post2.content }}</p>
@@ -44,45 +47,32 @@
     <!-- Comments section-->
     <section class="mb-5">
         <div class="card bg-light">
-            <div class="card-body">
-                <!-- Comment form-->
-                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+             <div class="card-body">
+
+
+
+                {% include 'blog/commentform.html' %}
+
+
+
+                {% for c in  comment%}
+
                 <!-- Comment with nested comments-->
-                <div class="d-flex mb-4">
-                    <!-- Parent comment-->
-                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                     <div class="ms-3">
-                        <div class="fw-bold">Commenter Name</div>
-                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                        <!-- Child comment 1-->
-                        <div class="d-flex mt-4">
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">Commenter Name</div>
-                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                            </div>
-                        </div>
-                        <!-- Child comment 2-->
-                        <div class="d-flex mt-4">
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">Commenter Name</div>
-                                When you put money directly to a problem, it makes a good headline.
-                            </div>
-                        </div>
+                        <div class="fw-bold">{{ c.author }}</div>
+                        {{c.content}}
+                        <br>
+                        <a class="btn btn-success" href="{% url 'updateComment' c.pk %}">댓글수정</a>
+                        <a class="btn btn-warning" href='/blog/{{ c.pk }}/deleteComment'>댓글삭제</a>
+
+
                     </div>
-                </div>
-                <!-- Single comment-->
-                <div class="d-flex">
-                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                    <div class="ms-3">
-                        <div class="fw-bold">Commenter Name</div>
-                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                {% endfor %}
+
         <a class="btn btn-primary" href='/blog/'>목록으로 이동 →</a>
+             </div>
+        </div>
     </section>
 
 {% endblock %}

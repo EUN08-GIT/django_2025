@@ -4,7 +4,7 @@ from .forms import Bookform
 
 # Create your views here.
 def library(request):
-    books=Book.objects.all()
+    books=Book.objects.all().order_by('-pk')
     return render(request,
                   template_name='library/library.html',
                   context={'books':books}
