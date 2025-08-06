@@ -22,9 +22,9 @@ class Post(models.Model):
     updated_date = models.DateTimeField(auto_now=True,
                                         null=True)
     uploaded_img = models.ImageField(upload_to='media/',
-                                     blank=True)
+                                     blank=True,null=True)
     uploaded_file = models.FileField(upload_to='file/',
-                                     blank=True)
+                                     blank=True,null=True)
 
     def __str__(self):
         return f'게시글 제목:{self.title} -작성자:{self.author}-게시글 내용:{self.content}'

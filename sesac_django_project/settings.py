@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'library',
     'shopping',
     'django_extensions',
+    'example',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
