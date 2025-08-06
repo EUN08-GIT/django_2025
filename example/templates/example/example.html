@@ -31,6 +31,7 @@
            getPostList();
        });
          function getPostList(){
+             $('#postList').empty()
            $.ajax(
                {
                    url     :  "{% url 'blogAPI'%}",
@@ -41,6 +42,7 @@
                        $(list).each(function(){
                            console.log(this)
                            console.log("++++++++++++++++++")
+
                            let str='';
                            str+='<hr>';
                            str+='<div>';
@@ -74,8 +76,13 @@
                  contentType:'application/json',
                  data:JSON.stringify(post),
                  headers:{'X-CSRFToken' : csrftoken},
-                 success:function(){
-                     alert("새글성공")
+                 success:function(data){
+                     console.log(data)
+                     $('#title').val('')
+                     $('#author').val('')
+                     $('#content').val('')
+                     getPostList()
+
                  },
                  error:function (){
                      alert("새글실패")
@@ -94,7 +101,7 @@
         <input type="text" id="title" placeholder="title" required><br>
         <input type="text" id="author" placeholder="author" required><br>
         <input type="text" id="content" placeholder="content" required><br>
-        <input type="submit" id="postAddBtn">
+        <input type="button" id="postAddBtn" value="글작성하기">
     </form>
     <div id="result"></div>
 
