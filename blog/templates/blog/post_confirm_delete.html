@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 style="color: red">정말정말 삭제하시겠습니까?</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="진짜 삭제" style="color: blue">
+    </form>
+</body>
+</html>

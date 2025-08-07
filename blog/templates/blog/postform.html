@@ -6,7 +6,7 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="col-lg-10" >
-        <h6>작성자 : {{ postform.author }}</h6>
+{#        <h6>작성자 : {{ postform.author }}</h6>#}
         <h6>제목 : {{ postform.title }}</h6>
         <h6>내용 : {{ postform.content }}</h6>
         <h6>분류 : {{ postform.category }}</h6>
